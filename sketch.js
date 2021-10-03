@@ -1,4 +1,4 @@
-var backgroundToggle = 0;
+var backgroundToggle = 255;
 var palette;
 
 function preload() {
@@ -8,14 +8,11 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL).parent("container");
   frameRate(60);
-
-  //noStroke();
-  console.log(palette[0][1]);
   fill(palette[0][1]);
 }
 
 function draw() {
-  background(0, 0, 0, 0);
+  background(backgroundToggle);
   rotateX(frameCount * 0.1);
   plane(20, 20);
 }
@@ -26,4 +23,12 @@ function windowResized() {
 
 function saveScreenshot() {
   saveCanvas("myCanvas", "png");
+}
+
+function switchBackground() {
+  if (backgroundToggle === 255) {
+    backgroundToggle = 0;
+  } else if (backgroundToggle === 0) {
+    backgroundToggle = 255;
+  }
 }
