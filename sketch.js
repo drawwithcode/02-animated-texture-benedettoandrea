@@ -1,7 +1,7 @@
 var backgroundToggle = 255;
 var palette;
-var xDim = 50;
-var yDim = 5;
+var xDim = 25;
+var yDim = 25;
 
 function preload() {
   palette = loadJSON("100.json");
@@ -18,10 +18,6 @@ function setup() {
 function draw() {
   ortho(-width / 2, width / 2, -height / 2, height / 2, -100000, 100000);
   background(backgroundToggle);
-  rotateY(frameCount * 0.01);
-  ///line(0, -height / 2, 0, height / 2);
-  ///line(-width / 2, 0, width / 2, 0);
-  //rect(-width / 2, -height / 2, windowWidth / 2, windowHeight / 2);
   for (var x = -width / 2; x < width / 2; x += width / xDim) {
     for (var y = -height / 2; y < height / 2; y += height / yDim) {
       rect(x, y, windowWidth / xDim, windowHeight / yDim);
