@@ -30,6 +30,40 @@
   <body>
     <div class="container" id="container">
       <!--desktop/large screens-->
+      <div class="header">
+        <input type="button" value="add row" onclick="AddHeight()" />
+        <input type="button" value="remove row" onclick="RemHeight()" />
+        <input type="button" value="add column" onclick="AddWidth()" />
+        <input
+          type="button"
+          value="remove column"
+          onclick="RemWidth()"
+        />
+      </div>
+      <!--mobile-->
+      <div class="upperGrid">
+        <div>
+          <input type="button" value="add row" onclick="AddHeight()" />
+        </div>
+        <div>
+          <input
+            type="button"
+            value="add column"
+            onclick="AddWidth()"
+          />
+        </div>
+        <div>
+          <input type="button" value="remove row" onclick="RemHeight()" />
+        </div>
+        <div>
+          <input
+            type="button"
+            value="remove column"
+            onclick="RemWidth()"
+          />
+        </div>
+      </div>
+      <!--desktop/large screens-->
       <div class="footer">
         <input
           type="button"
