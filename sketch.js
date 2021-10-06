@@ -5,9 +5,11 @@ var angleX = 0;
 var angleY = 0;
 var octaves = 8;
 var falloff = 0.5;
+var palette;
+var paletteSelector;
 
 function preload() {
-  palette = loadJSON("100.json");
+  palette = loadJSON("palettes.json");
 }
 
 function setup() {
@@ -17,6 +19,7 @@ function setup() {
   stroke(0);
   strokeWeight(windowHeight / 750);
   angleMode(DEGREES);
+  paletteSelector = getRandomInt(0, 18);
 }
 
 function draw() {
@@ -43,25 +46,25 @@ function draw() {
       rotateX(angleX);
       rotateY(angleY);
       if (Math.floor(noiseColor * 10) == 0) {
-        fill(230, 81, 0);
+        fill(palette[paletteSelector][0]);
       } else if (Math.floor(noiseColor * 10) == 1) {
-        fill(239, 108, 0);
+        fill(palette[paletteSelector][1]);
       } else if (Math.floor(noiseColor * 10) == 2) {
-        fill(245, 124, 0);
+        fill(palette[paletteSelector][2]);
       } else if (Math.floor(noiseColor * 10) == 3) {
-        fill(251, 140, 0);
+        fill(palette[paletteSelector][3]);
       } else if (Math.floor(noiseColor * 10) == 4) {
-        fill(255, 152, 0);
+        fill(palette[paletteSelector][4]);
       } else if (Math.floor(noiseColor * 10) == 5) {
-        fill(255, 167, 38);
+        fill(palette[paletteSelector][5]);
       } else if (Math.floor(noiseColor * 10) == 6) {
-        fill(255, 183, 77);
+        fill(palette[paletteSelector][6]);
       } else if (Math.floor(noiseColor * 10) == 7) {
-        fill(255, 204, 128);
+        fill(palette[paletteSelector][7]);
       } else if (Math.floor(noiseColor * 10) == 8) {
-        fill(255, 224, 178);
+        fill(palette[paletteSelector][8]);
       } else {
-        fill(255, 243, 224);
+        fill(palette[paletteSelector][9]);
       }
       plane(windowWidth / xDim, windowHeight / yDim);
       pop();
@@ -85,8 +88,24 @@ function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
 }
 
-function saveScreenshot() {
-  saveCanvas("myCanvas", "png");
+function AddHeight() {
+  yDim++;
+}
+
+function RemHeight() {
+  yDim--;
+}
+
+function AddWidth() {
+  xDim++;
+}
+
+function RemWidth() {
+  xDim--;
+}
+
+function randomPalette() {
+  paletteSelector = getRandomInt(0, 18);
 }
 
 function switchBackground() {
@@ -99,28 +118,14 @@ function switchBackground() {
   }
 }
 
-function AddWidth() {
-  xDim++;
-}
-
-function RemWidth() {
-  xDim--;
-}
-
-function AddHeight() {
-  yDim++;
-}
-
-function RemHeight() {
-  yDim--;
-}
-
-function keyReleased() {
-  if (key == "s" || key == "S") {
-    if (isLooping()) {
-      noLoop();
-    } else {
-      loop();
-    }
+function startStop() {
+  if (isLooping()) {
+    noLoop();
+  } else {
+    loop();
   }
+}
+
+function saveScreenshot() {
+  saveCanvas("myCanvas", "png");
 }
