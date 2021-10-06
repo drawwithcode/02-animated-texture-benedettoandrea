@@ -1,18 +1,17 @@
 // function to set a given theme
 function setTheme(themeName) {
-  localStorage.setItem("theme", themeName);
   document.documentElement.className = themeName;
 }
 
-var metaThemeColor = document.querySelector("meta[name=theme-color]");
-
 // function to toggle between light and dark theme
 function toggleTheme() {
-  if (localStorage.getItem("theme") === "dark") {
-    setTheme("light");
-    metaThemeColor.setAttribute("content", "#ffffff");
-  } else {
+  var metaThemeColor = document.querySelector("meta[name=theme-color]");
+  var currentTheme = document.documentElement.className;
+  if (currentTheme === "light") {
     setTheme("dark");
     metaThemeColor.setAttribute("content", "#000000");
+  } else {
+    setTheme("light");
+    metaThemeColor.setAttribute("content", "#ffffff");
   }
 }
