@@ -1,12 +1,14 @@
-var backgroundToggle = 255;
-var xDim = 20;
-var yDim = 20;
-var angleX = 0;
-var angleY = 0;
-var octaves = 8;
-var falloff = 0.5;
-var palette;
-var paletteSelector;
+let xDim = 20;
+let yDim = 20;
+let angleX = 0;
+let angleY = 0;
+let octaves = 8;
+let falloff = 0.5;
+let palette;
+let paletteSelector;
+let currentTheme = "light";
+let themeBackground = 255;
+let themeStroke = 0;
 
 function preload() {
   palette = loadJSON("palettes.json");
@@ -15,16 +17,15 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL).parent("container");
   frameRate(60);
-  fill(255);
-  stroke(0);
-  strokeWeight(windowHeight / 750);
   angleMode(DEGREES);
   paletteSelector = getRandomInt(0, 18);
 }
 
 function draw() {
+  background(themeBackground);
+  stroke(themeStroke);
+  strokeWeight(height / 750);
   noiseDetail(octaves, falloff);
-  background(backgroundToggle);
   ortho(-width / 2, width / 2, -height / 2, height / 2, -100000, 100000);
 
   for (
@@ -108,16 +109,20 @@ function randomPalette() {
   paletteSelector = getRandomInt(0, 18);
 }
 
-function switchBackground() {
-  if (backgroundToggle === 255) {
-    backgroundToggle = 0;
-    stroke(255);
-  } else if (backgroundToggle === 0) {
-    backgroundToggle = 255;
-    stroke(0);
+// toggle between themes (light/dark)
+function toggleP5Theme() {
+  if (currentTheme === "dark") {
+    themeBackground = 255;
+    themeStroke = 0;
+    currentTheme = "light";
+  } else if (currentTheme === "light") {
+    themeBackground = 0;
+    themeStroke = 255;
+    currentTheme = "dark";
   }
 }
 
+// toggle the movement
 function startStop() {
   if (isLooping()) {
     noLoop();
@@ -126,6 +131,20 @@ function startStop() {
   }
 }
 
+// save a screenshot
 function saveScreenshot() {
-  saveCanvas("myCanvas", "png");
+  let date = new Date();
+  let currentDate =
+    date.getFullYear() +
+    "-" +
+    (date.getMonth() + 1) +
+    "-" +
+    date.getDate() +
+    "-" +
+    date.getHours() +
+    "-" +
+    date.getMinutes() +
+    "-" +
+    date.getSeconds();
+  saveCanvas("texture_" + currentDate, "png");
 }

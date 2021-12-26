@@ -9,95 +9,52 @@
     />
     <meta name="theme-color" content="#ffffff" class="light" />
     <!--title-->
-    <title>Sketch</title>
-    <!--font-->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
-      rel="stylesheet"
-    />
+    <title>animated texture</title>
     <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="normalize.css" />
     <link rel="stylesheet" type="text/css" href="style.css" />
     <!--p5 libraries-->
     <script src="libraries/p5.min.js"></script>
     <script src="libraries/p5.sound.min.js"></script>
-    <!--p5 script-->
-    <script src="sketch.js"></script>
     <!--theming script-->
     <script src="theme.js"></script>
+    <!--p5 script-->
+    <script src="sketch.js"></script>
   </head>
   <body>
-    <div class="container" id="container">
-      <!--desktop/large screens-->
-      <!--<p>drag your mouse or press on the screen to move around the tiles</p>-->
+    <div id="p5_loading" class="loadingclass"></div>
+    <div id="container">
       <div class="header">
-        <input type="button" value="add row" onclick="AddHeight()" />
-        <input type="button" value="remove row" onclick="RemHeight()" />
-        <input type="button" value="add column" onclick="AddWidth()" />
-        <input type="button" value="remove column" onclick="RemWidth()" />
-      </div>
-      <!--mobile-->
-      <!--<p>drag your mouse or press on the screen to move around the tiles</p>-->
-      <div class="upperGrid">
-        <div>
-          <input type="button" value="add row" onclick="AddHeight()" />
-        </div>
-        <div>
-          <input type="button" value="add column" onclick="AddWidth()" />
-        </div>
-        <div>
-          <input type="button" value="remove row" onclick="RemHeight()" />
-        </div>
-        <div>
-          <input type="button" value="remove column" onclick="RemWidth()" />
+        <div class="description">
+          <span>drag around to rotate the tiles</span>
         </div>
       </div>
-      <!--desktop/large screens-->
       <div class="footer">
-        <input
-          type="button"
-          value="change colour palette"
-          onclick="randomPalette()"
-        />
-        <input
-          type="button"
-          value="switch theme"
-          onclick="toggleTheme();switchBackground()"
-        />
-        <input type="button" value="start/stop" onclick="startStop()" />
-        <input
-          type="button"
-          value="save a screenshot"
-          onclick="saveScreenshot()"
-        />
-      </div>
-      <!--mobile-->
-      <div class="lowerGrid">
-        <div>
-          <input
-            type="button"
-            value="change colour palette"
-            onclick="randomPalette()"
-          />
-        </div>
-        <div>
-          <input type="button" value="start/stop" onclick="startStop()" />
-        </div>
-        <div>
-          <input
-            type="button"
-            value="switch theme"
-            onclick="toggleTheme();switchBackground()"
-          />
-        </div>
-        <div>
-          <input
-            type="button"
-            value="save a screenshot"
-            onclick="saveScreenshot()"
-          />
-        </div>
+        <button id="AddHeight" class="item" onclick="AddHeight()">
+          <span>add row</span>
+        </button>
+        <button id="RemHeight" class="item" onclick="RemHeight()">
+          <span>remove row</span>
+        </button>
+        <button id="AddWidth" class="item" onclick="AddWidth()">
+          <span>add column</span>
+        </button>
+        <button id="RemWidth" class="item" onclick="RemWidth()">
+          <span>remove column</span>
+        </button>
+        <button id="randomPalette" class="item" onclick="randomPalette()">
+          <span>change colour palette</span>
+        </button>
+        <button
+          id="toggleP5Theme"
+          class="item"
+          onclick="togglePageTheme();toggleP5Theme()"
+        >
+          <span>switch theme</span>
+        </button>
+        <button id="saveScreenshot" class="item" onclick="saveScreenshot()">
+          <span>save a screenshot</span>
+        </button>
       </div>
     </div>
   </body>
