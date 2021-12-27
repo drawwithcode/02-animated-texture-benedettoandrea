@@ -1,11 +1,18 @@
+// texture control
 let xDim = 20;
 let yDim = 20;
 let angleX = 0;
 let angleY = 0;
+
+// noise
 let octaves = 8;
 let falloff = 0.5;
+
+// color palettes
 let palette;
 let paletteSelector;
+
+// theming
 let currentTheme = "light";
 let themeBackground = 255;
 let themeStroke = 0;
@@ -78,15 +85,15 @@ function mouseDragged() {
   angleY = map(mouseX, -width / 2, width / 2, 360, 0);
 }
 
-// generate a random integer from range, inclusive
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
+
+// generate a random integer from a range, inclusive
 function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
 }
 
 function AddHeight() {
