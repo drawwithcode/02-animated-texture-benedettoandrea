@@ -80,7 +80,7 @@ body {
   padding: 5px;
   /* styles, colours */
   background: transparent;
-  color: #808080;
+  color: var(--text);
   /* fonts */
   font-family: "Inter", sans-serif;
   font-weight: 400;
